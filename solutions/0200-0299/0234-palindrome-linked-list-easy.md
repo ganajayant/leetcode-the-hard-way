@@ -110,6 +110,53 @@ class Solution:
 ```
 
 </TabItem>
+
+<TabItem value="javascript" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    let slow = head;
+    let fast = head;
+    // find middle value(slow)
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    // reverse second portion 
+    let prev = null;
+    while (slow) {
+        let temp = slow.next;
+        slow.next = prev;
+        prev = slow;
+        slow = temp;
+    }
+    // check if it's palindrome
+    let left = head;
+    let right = prev;
+    while (right) {
+        if (left.val != right.val) {
+            return false;
+        }
+        left = left.next;
+        right = right.next;
+    }
+    return true;
+};
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 2: Convert it to String
@@ -134,6 +181,57 @@ public:
         return s == t;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="javascript" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    let head_str = new String();
+    // convert to string
+    while (head) {
+        head_str += head.val;
+        head = head.next;
+    }
+    // return true if it's palindrome 
+    return head_str == head_str.split('').reverse().join('');
+};
+```
+
+</TabItem>
+
+<TabItem value="python" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        head_str = ''
+        # convert to string
+        while head:
+            head_str += str(head.val)
+            head = head.next
+        # return true if it's palindrome
+        return head_str == head_str[::-1]
 ```
 
 </TabItem>
