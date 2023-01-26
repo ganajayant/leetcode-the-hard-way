@@ -1,6 +1,6 @@
 ---
 description: >-
-  Author: @wingkwong |
+  Author: @wingkwong, @radojicic23 |
   https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks
 ---
 
@@ -54,6 +54,8 @@ Note that we did not use all of the additional rocks.
 
 ## Approach 1: Greedy
 
+<Tabs>
+<TabItem value="cpp" label="C++">
 <SolutionAuthor name="@wingkwong"/>
 
 ```cpp
@@ -80,3 +82,51 @@ public:
     }
 };
 ```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        for i in range(len(capacity)):
+            capacity[i] -= rocks[i]
+        
+        capacity.sort()
+        count = 0
+        while count < len(capacity) and additionalRocks - capacity[count] >= 0:
+            additionalRocks -= capacity[count]
+            count += 1
+        return count 
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[]} capacity
+ * @param {number[]} rocks
+ * @param {number} additionalRocks
+ * @return {number}
+ */
+var maximumBags = function(capacity, rocks, additionalRocks) {
+    for (let i = 0; i < capacity.length; i++) {
+        capacity[i] -= rocks[i];
+    }
+    let res = 0;
+    capacity.sort(function(a, b) {return a - b});
+    while (res < capacity.length && additionalRocks - capacity[res] >= 0) {
+        additionalRocks -= capacity[res];
+        res += 1;
+    }
+    return res;
+};
+```
+
+</TabItem>
+</Tabs>

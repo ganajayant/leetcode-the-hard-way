@@ -24,12 +24,12 @@
   --site-color-svg-icon-favorite: #e9669e;
   --site-color-checkbox-checked-bg: hsl(167deg 56% 73% / 25%);
   --site-color-feedback-background: #fff;
-  --ifm-hero-background-color: #fff;
-  --ifm-hero-text-color: #203320;
+  --ifm-hero-background-color: #004389;
+  --ifm-hero-text-color: #F7F8F8;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-footer-background-color: #353738;
-  --ifm-footer-link-hover-color: #00bfff;
-  --ifm-link-color: #203320;
+  --ifm-footer-link-hover-color: #9ca0f3;
+  --ifm-link-color: #5039c4;
   --ifm-announcement-color: #9da0e2;
 }
 
@@ -87,14 +87,22 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 div[class^='announcementBar_'] {
-  background: #1d2428;
+  background: var(--ifm-hero-background-color);
   color: #ffffff;
   border-bottom: 1px dotted #eeeeee;
   font-weight: bold;
+  font-size: 18px;
+  height: 55px;
+  padding: 10px;
 }
 
 div[class^='announcementBar_'] a {
     color: var(--ifm-announcement-color);
+}
+
+div[class^='announcementBar_'] .clean-btn {
+  color: #ffffff;
+  opacity: 100%;
 }
 
 [data-theme='light'] .DocSearch {

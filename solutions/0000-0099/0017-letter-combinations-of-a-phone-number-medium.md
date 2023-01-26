@@ -1,6 +1,6 @@
 ---
 description: >-
-  Author: @vigneshshiv |
+  Author: @vigneshshiv, @radojicic23 |
   https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 ---
 
@@ -102,6 +102,72 @@ class Solution {
         }
     }
 }
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        res = []
+        hashmap = {'2': 'abc', 
+                   '3': 'def', 
+                   '4': 'ghi', 
+                   '5': 'jkl', 
+                   '6': 'mno', 
+                   '7': 'pqrs', 
+                   '8': 'tuv', 
+                   '9': 'wxyz'}
+                   
+        def backtrack(i, curr_str):
+            if len(curr_str) == len(digits):
+                res.append(curr_str)
+                return 
+            for c in hashmap[digits[i]]:
+                backtrack(i + 1, curr_str + c)
+        if digits:
+            backtrack(0, "")
+        return res 
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+var letterCombinations = function(digits) {
+    let res = [];
+    const hashmap = {'2': 'abc', 
+               '3': 'def', 
+               '4': 'ghi', 
+               '5': 'jkl', 
+               '6': 'mno', 
+               '7': 'pqrs', 
+               '8': 'tuv', 
+               '9': 'wxyz'};
+    
+    function backtrack(i, curr_str) {
+        if (curr_str.length == digits.length) {
+            res.push(curr_str);
+            return;
+        }
+        for (c of hashmap[digits[i]]) {
+            backtrack(i + 1, curr_str + c);
+        }
+    }
+    if (digits) {
+        backtrack(0, "");
+    }
+    return res;
+};
 ```
 
 </TabItem>

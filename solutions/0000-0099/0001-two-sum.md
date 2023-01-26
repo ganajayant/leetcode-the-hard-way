@@ -1,5 +1,5 @@
 ---
-description: "Author: @wingkwong, @ganajayant, @skoden | https://leetcode.com/problems/two-sum/"
+description: "Author: @wingkwong, @ganajayant, @skoden, @radojicic23 | https://leetcode.com/problems/two-sum/"
 tags: [Array, Two Pointer, Hash Table]
 ---
 
@@ -50,7 +50,7 @@ Output: [0,1]
 
 ## Approach 1: Brute Force
 
-Since this is an easy problem, most of the time brute force solutions would work due to the loose constraints. However, this solution gives O(n^2) time complexity and O(1) space complexity.
+Tthe goal is to find two numbers in an array that add up to a given target number. Since this is an easy problem, most of the time brute force solutions would work due to the loose constraints. However, this brute force solution gives $O(n^2)$ time complexity and $O(1)$ space complexity since it involves checking all possible pairs of numbers in the array and seeing if they add up to the target.
 
 <Tabs>
 <TabItem value="cpp" label="C++">
@@ -126,11 +126,34 @@ class Solution {
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] == target) {
+                return [i, j];
+            }
+        }
+    }
+    return [-1, -1];
+};
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 2: Sorting and Two Pointer
 
-Make a vector of pairs of the original vector elements and the indices of the elements in the original vector. Sort this new formed vector. Using two pointer approach, find the sum of the elements pointed by the left and right pointers. If this sum is less than the target increment the left pointer by one, if the sum is greater than the target decrement the right pointer by one, and if the sum is equal to the target return the positions of the elements in the original array. This solution gives O(nlogn) time complexity and O(n) space complexity.
+Make a vector of pairs of the original vector elements and the indices of the elements in the original vector. Sort this new formed vector. Using two pointer approach, find the sum of the elements pointed by the left and right pointers. If this sum is less than the target increment the left pointer by one, if the sum is greater than the target decrement the right pointer by one, and if the sum is equal to the target return the positions of the elements in the original array. This solution gives $O(nlogn)$ time complexity and $O(n)$ space complexity.
 
 <Tabs>
 <TabItem value="cpp" label="C++">
@@ -169,7 +192,7 @@ public:
 
 ## Approach 3: Hash Table
 
-A better way to do it is using one-pass hash table approach. We iterate each element and insert it into the hash table. We also check if the complement already exists in the hash table or not. If so, we can return the answer immediately. This solution gives O(n) time complexity and O(n) space complexity.
+A better way to do it is using one-pass hash table approach. We iterate each element and insert it into the hash table. We also check if the complement already exists in the hash table or not. If so, we can return the answer immediately. This solution gives $O(n)$ time complexity and $O(n)$ space complexity.
 
 <Tabs>
 <TabItem value="cpp" label="C++">
@@ -264,6 +287,32 @@ var twoSum = function (nums, target) {
         hashMap[nums[i]] = i;
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="rs" label="Rust">
+<SolutionAuthor name="@wingkwong"/>
+
+```rs
+use std::collections::HashMap;
+
+impl Solution {
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut m: HashMap<&i32, usize> = HashMap::new();
+        let mut ans: Vec<i32> = vec![0;2];
+        for (i, v) in nums.iter().enumerate() {
+            if (m.contains_key(&(target - v))) {
+                ans[0] = m[&(target - v)] as i32;
+                ans[1] = i as i32;
+                return ans;
+            } else {
+                m.insert(v, i);
+            }
+        }
+        vec![]
+    }
+}
 ```
 
 </TabItem>

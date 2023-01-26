@@ -1,6 +1,7 @@
 ---
-title: 'Heap (Priority Queue)'
+title: 'LTHW - Heap (Priority Queue)'
 description: 'Collections of Heap (Priority Queue) Problems'
+sidebar_position: 3
 hide_table_of_contents: true
 keywords:
   - leetcode
@@ -8,8 +9,6 @@ keywords:
   - Heap
   - Priority Queue
 ---
-
-import Table from '@site/src/components/Table';
 
 export const problems = [
   {

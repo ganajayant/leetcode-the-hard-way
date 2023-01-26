@@ -10,8 +10,8 @@ const katex = require('rehype-katex');
 const config = {
   title: 'LeetCode The Hard Way',
   tagline: 'From Absolute Beginner to Quitter',
-  url: 'https://wingkwong.github.io',
-  baseUrl: '/leetcode-the-hard-way/',
+  url: 'http://leetcodethehardway.com/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -95,6 +95,11 @@ const config = {
             activeBaseRegex: `/solutions/`,
           },
           {
+            label: 'Tags',
+            to: '/solutions/tags/',
+            activeBaseRegex: `/solutions/tags/`,
+          },
+          {
             label: 'Collections',
             to: '/collections/',
             activeBaseRegex: `/collections/`,
@@ -142,6 +147,10 @@ const config = {
               {
                 label: 'Solutions',
                 href: '/solutions/category/0000---0099/',
+              },
+              {
+                label: 'Tags',
+                href: '/solutions/tags',
               },
               {
                 label: 'Collections',

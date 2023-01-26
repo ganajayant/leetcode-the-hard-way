@@ -10,7 +10,6 @@ keywords:
   - algorithm
 ---
 
-
 <TutorialAuthors names="@wingkwong"/>
 
 ## Overview
@@ -31,7 +30,8 @@ bool unite(int x, int y) {
     x = get(x);
     y = get(y);
     if (x != y) {
-       root[y] = x;
+      if (x < y)  root[y] = x;
+      else root[x] = y;
       return true;
     }
     return false;
@@ -138,12 +138,11 @@ int main() {
 }
 ```
 export const suggestedProblems = [
- 
   {
     "problemName": "2421. Number of Good Paths",
     "difficulty": "Hard",
     "leetCodeLink": "https://leetcode.com/problems/number-of-good-paths/",
-    "solutionLink": ""
+    "solutionLink": "../../solutions/2400-2499/number-of-good-paths-hard"
   },
   {
     "problemName": "2382. Maximum Segment Sum After Removals",
@@ -151,7 +150,12 @@ export const suggestedProblems = [
     "leetCodeLink": "https://leetcode.com/problems/maximum-segment-sum-after-removals/",
     "solutionLink": ""
   },
-  
+  {
+    "problemName": "1061. Lexicographically Smallest Equivalent String",
+    "difficulty": "Medium",
+    "leetCodeLink": "https://leetcode.com/problems/lexicographically-smallest-equivalent-string/",
+    "solutionLink": "../../solutions/1000-1099/lexicographically-smallest-equivalent-string-medium"
+  }
 ]
 
 <Table title="Suggested Problems" data={suggestedProblems} />
