@@ -1,5 +1,5 @@
 ---
-description: 'Author: @ColeB2 | https://leetcode.com/problems/same-tree/'
+description: 'Author: @ColeB2, @radojicic23 | https://leetcode.com/problems/same-tree/'
 tags: [Tree, Depth-First Search, Breadth-First Search, Binary Tree]
 ---
 
@@ -86,6 +86,73 @@ class Solution:
         return p is q
 ```
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function(p, q) {
+    // if both of them are empty
+    if (!p && !q) return true;
+    // if one of them is empty 
+    // if the values are not the same
+    if (!p || !q || p.val != q.val) return false;
+    // recursive call
+    // are left and right subtree equal
+    return (isSameTree(p.left, q.left) && 
+            isSameTree(p.right, q.right));
+};
+```
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        // if both of them are empty
+        if (!p && !q) {
+            return true;
+        }
+        // if one of them is empty 
+        // if the values are not the same
+        if (!p || !q || p->val != q->val) {
+            return false;
+        }
+        // recursive call
+        // are left and right subtree equal
+        return (isSameTree(p->left, q->left) &&
+                isSameTree(p->right, q->right));
+    }
+};
+```
+</TabItem>
 </Tabs>
 
 ## Approach 2: Iterative Depth-First Search
@@ -132,9 +199,41 @@ class Solution:
         return True
 ```
 </TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        stack<pair<TreeNode*, TreeNode*>> st;
+        st.push({p, q});
+        while (!st.empty()) {
+            auto [node1, node2] = st.top();
+            st.pop();
+            if (!node1 && !node2) continue;
+            if (!node1 || !node2 || node1->val != node2->val) {
+                return false;
+            } else {
+                st.push({node1->left, node2->left});
+                st.push({node1->right, node2->right});
+            }
+        }
+        return true;
+    }
+};
+```
+</TabItem>
 </Tabs>
-
-
-
-
-

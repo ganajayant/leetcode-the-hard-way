@@ -1,5 +1,5 @@
 ---
-description: 'Author: @wingkwong, @vigneshshiv | https://leetcode.com/problems/single-number/'
+description: 'Author: @wingkwong, @vigneshshiv, @radojicic23 | https://leetcode.com/problems/single-number/'
 ---
 
 # 0136 - Single Number (Easy)
@@ -135,6 +135,48 @@ public:
         return 2 * sumOfSet - sumOfNumbers;
     }
 };
+```
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+    let hashSet = new Set();
+    let sumOfSet = 0;
+    let sumOfNums = 0;
+    for (let num of nums) {
+        if (!hashSet.has(num)) {
+            hashSet.add(num);
+            sumOfSet += num;
+        }
+        sumOfNums += num;
+    }
+    return 2 * sumOfSet - sumOfNums;
+};
+```
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        hash_set = set()
+        sum_of_nums = 0
+        sum_of_set = 0
+        for n in nums:
+            if n not in hash_set:
+                hash_set.add(n)
+                sum_of_set += n
+            sum_of_nums += n
+        return 2 * sum_of_set - sum_of_nums
 ```
 </TabItem>
 </Tabs>

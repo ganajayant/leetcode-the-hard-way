@@ -70,7 +70,57 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        rows, cols = len(matrix), len(matrix[0])
+        r = 0
+        for i in range(rows):
+            if target >= matrix[i][0] and target <= matrix[i][-1]:
+                r = i
+                break
+        for i in range(cols):
+            if (matrix[r][i] == target):
+                return True
+        return False
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+    let rows = matrix.length, cols = matrix[0].length;
+    let r = 0;
+    for (let i = 0; i < rows; i++) {
+        if (target >= matrix[i][0] && target <= matrix[i][cols - 1]) {
+            r = i;
+            break;
+        }
+    }
+    for (let i = 0; i < cols; i++) {
+        if (matrix[r][i] == target) {
+            return true;
+        }
+    }
+    return false;
+};
+```
+
+</TabItem>
 </Tabs>
+
 
 ## Approach 2: Binary Search
 
@@ -197,6 +247,47 @@ var searchMatrix = function(matrix, target) {
         }
     }
     return false;
+};
+```
+
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int rows = matrix.size(), cols = matrix[0].size();
+        int top = 0, bottom = rows - 1;
+        while (top <= bottom) {
+            int mid = top + (bottom - top) / 2;
+            if (target > matrix[mid][cols - 1]) {
+                top = mid + 1;
+            } else if (target < matrix[mid][0]) {
+                bottom = mid - 1;
+            } else {
+                break;
+            }
+        }
+        if (!(top <= bottom)) {
+            return false;
+        }
+        int mid = top + (bottom - top) / 2;
+        int left = 0, right = cols - 1;
+        while (left <= right) {
+            int m = left + (right - left) / 2;
+            if (target > matrix[mid][m]) {
+                left = m + 1;
+            } else if (target < matrix[mid][m]) {
+                right = m - 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 ```
 
