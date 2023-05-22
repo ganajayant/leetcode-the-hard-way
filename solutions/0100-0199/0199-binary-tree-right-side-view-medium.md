@@ -1,5 +1,5 @@
 ---
-description: 'Author: @ganajayant, @ColeB2 | https://leetcode.com/problems/binary-tree-right-side-view/'
+description: 'Author: @ganajayant, @ColeB2, @radojicic23 | https://leetcode.com/problems/binary-tree-right-side-view/'
 ---
 
 # 0199 - Binary Tree Right Side View (Medium)
@@ -132,6 +132,72 @@ class Solution:
         dfs(root, 0, right_view)
         return right_view
 
+```
+
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        dfs(root, 1, ans);
+        return ans;
+    }
+    void dfs(TreeNode* root, int level, vector<int>& ans) {
+        if (!root) return;
+        if (ans.size() < level) ans.push_back(root->val);
+        dfs(root->right, level + 1, ans);
+        dfs(root->left, level + 1, ans);
+    }
+};
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var rightSideView = function(root) {
+    if (!root) return [];
+    let ans = [];
+    dfs(root, 0);
+    return ans;
+
+    function dfs(root, level) {
+        if (!root) return;
+        ans[level] = root.val;
+        dfs(root.left, level + 1);
+        dfs(root.right, level + 1);
+    }
+};
 ```
 
 </TabItem>

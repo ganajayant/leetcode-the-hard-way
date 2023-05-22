@@ -1,9 +1,13 @@
 ---
-description: 'Author: @wingkwong | https://leetcode.com/problems/isomorphic-strings/'
+description: 'Author: @wingkwong, @vigneshshiv, @radojicic23 | https://leetcode.com/problems/isomorphic-strings/'
 tags: [Hash Table, String]
 ---
 
 # 0205 - Isomorphic Strings (Easy) 
+
+## Problem Link
+
+https://leetcode.com/problems/isomorphic-strings/
 
 ## Problem Statement
 
@@ -103,6 +107,54 @@ class Solution {
         return true;
     }
 }
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        map1 = {}
+        map2 = {}
+        for i in range(len(s)):
+            if s[i] in map1 and map1[s[i]] != t[i]:
+                return False
+            if t[i] in map2 and map2[t[i]] != s[i]:
+                return False
+            map1[s[i]] = t[i]
+            map2[t[i]] = s[i]
+        return True 
+```
+
+</TabItem>
+
+ <TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+    let map1 = {};
+    let map2 = {};
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] in map1 && map1[s[i]] != t[i]) {
+            return false;
+        }
+        if (t[i] in map2 && map2[t[i]] != s[i]) {
+            return false;
+        }
+        map1[s[i]] = t[i];
+        map2[t[i]] = s[i];
+    }
+    return true;
+};
 ```
 
 </TabItem>

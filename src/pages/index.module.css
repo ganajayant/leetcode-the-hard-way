@@ -9,6 +9,8 @@
   position: relative;
   overflow: hidden;
   display: block;
+  background-image: url('/static/img/banner.png');
+  background-size: cover;
 }
 
 .heroBanner img {
@@ -41,6 +43,20 @@
 
 .highlightedColor {
   color: #F7F8F8;
+}
+
+.about {
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: left;
+  background: var(--ifm-about-background-color);
+}
+
+.advertise {
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: left;
+  background: var(--ifm-advertise-background-color);
 }
 
 

@@ -1,5 +1,5 @@
 ---
-description: "Author: @ColeB2 | https://leetcode.com/problems/invert-binary-tree/"
+description: "Author: @ColeB2, @radojicic23 | https://leetcode.com/problems/invert-binary-tree/"
 tags: [Tree, Depth-First Search, Breadth-First Search, Binary Tree]
 ---
 
@@ -91,6 +91,78 @@ class Solution:
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    // base case
+    if (!root) {
+        return root;
+    }
+    // swap left and right nodes
+    let tmp = root.left;
+    root.left = root.right;
+    root.right = tmp;
+    // call function recursively on left and right nodes
+    invertTree(root.left);
+    invertTree(root.right);
+    // return root node 
+    return root;
+};
+```
+
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        // base case
+        if (!root) {
+            return root;
+        }
+        // swap left and right node
+        TreeNode* tmp = root->left;
+        root->left = root->right;
+        root->right = tmp;
+        // call function recursively on left and right nodes
+        invertTree(root->left);
+        invertTree(root->right);
+        // return root node
+        return root;
+    }
+};
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 2: Iterative Depth-First Search
@@ -139,6 +211,99 @@ class Solution:
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    // base case
+    if (!root) {
+        return root;
+    }
+    // initialize stack and add root inside
+    stack = [];
+    stack.push(root);
+    // go through every value in stack
+    while (stack.length) {
+        // pop the last node from the stack
+        let node = stack.pop();
+        if (node != null) {
+            // swap left and right nodes
+            let tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            // add left and right nodes in stack
+            stack.push(node.left, node.right);
+        } 
+    }
+    // return root node 
+    return root;
+};
+```
+
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        // base case 
+        if (!root) {
+            return root;
+        }
+        // initialize stack and add root inside 
+        stack<TreeNode*> st;
+        st.push(root);
+        // go through every value in stack
+        while (!st.empty()) {
+            // pop the last node from the stack
+            TreeNode* node = st.top();
+            st.pop();
+            // if node exist
+            if (node != NULL) {
+                // swap left and right nodes
+                TreeNode* tmp = node->left;
+                node->left = node->right;
+                node->right = tmp;
+                // insert left and right nodes in stack
+                st.push(node->left);
+                st.push(node->right);
+            }
+        }
+        // return root node
+        return root;
+    }
+};
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 3: Iterative Breadth-First Search
@@ -183,5 +348,100 @@ class Solution:
 ```
 
 </TabItem>
-</Tabs>
 
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        // base case
+        if (!root) {
+            return root;
+        }
+        // inititalize queue
+        queue<TreeNode*> q;
+        // insert root inside queue
+        q.push(root);
+        // go through all values in queue
+        while (!q.empty()) {
+            // pop the front node from queue
+            TreeNode* node = q.front();
+            q.pop();
+            // if node exist
+            if (node != NULL) {
+                // swap left and right nodes
+                TreeNode* tmp = node->left;
+                node->left = node->right;
+                node->right = tmp;
+                // insert left and right nodes in queue
+                q.push(node->left);
+                q.push(node->right);
+            }
+        }
+        // return root node
+        return root;
+    }
+};
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    // base case
+    if (!root) {
+        return root;
+    }
+    // initialize queue and insert root inside queue
+    let q = new Queue();
+    q.enqueue(root);
+    // go through all elements in queue
+    while (!q.isEmpty()) {
+        // pop the front node from queue
+        let node = q.dequeue();
+        // if node exist
+        if (node) {
+            // swap left and right nodes
+            let tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            // insert left and right nodes in queue
+            q.enqueue(node.left);
+            q.enqueue(node.right);
+        }
+    }
+    // return root node
+    return root;
+};
+```
+
+</TabItem>
+</Tabs>
