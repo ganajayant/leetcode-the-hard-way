@@ -200,6 +200,49 @@ class Solution {
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+    // we can utilise the properties of XOR:
+    // a ^ a = 0
+    // a ^ 0 = a
+    // a ^ b ^ c = a ^ c ^ b
+    const n = nums.length;
+    let ans = n;
+    for (let i = 0; i < n; i++) {
+        ans ^= (i ^ nums[i]);
+    }
+    return ans;
+};
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        # we can utilise the properties of XOR:
+        # a ^ a = 0
+        # a ^ 0 = a
+        # a ^ b ^ c = a ^ c ^ b
+        n = len(nums)
+        res = n
+        for i in range(n):
+            res ^= (i ^ nums[i])
+        return res
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 3: Math
