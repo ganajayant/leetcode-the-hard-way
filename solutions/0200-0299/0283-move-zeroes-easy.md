@@ -96,6 +96,33 @@ class Solution {
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    let slow = 0;
+    for (let fast = 0; fast < nums.length; fast++) {
+        if (nums[fast] === 0) {
+            continue;
+        } else {
+            nums[slow] = nums[fast];
+            slow++;
+        }
+    }
+    while (slow < nums.length) {
+        nums[slow] = 0;
+        slow++;
+    }
+};
+```
+
+</TabItem>
 </Tabs>
 
 ## Approach 2: Two pointers Optimal
@@ -175,6 +202,33 @@ class Solution:
                 # swap them 
                 nums[i - count_zero] = nums[i]
                 nums[i] = 0
+```
+
+</TabItem>
+
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@radojicic23"/>
+
+```cpp
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int countZeros = 0;
+        // iterate through array
+        for (int i = 0; i < nums.size(); i++) {
+            // count zeros
+            if (nums[i] == 0) {
+                countZeros++;
+            // if the current number is not 0
+            // and if zero's count is 1 or more
+            } else if (countZeros > 0) {
+                // swap them
+                nums[i - countZeros] = nums[i];
+                nums[i] = 0;
+            }
+        }
+    }
+};
 ```
 
 </TabItem>
