@@ -1,5 +1,5 @@
 ---
-description: 'Author: @wingkwong, @deepanshu-rawat6 | https://leetcode.com/problems/valid-perfect-square/'
+description: 'Author: @wingkwong, @deepanshu-rawat6, @radojicic23 | https://leetcode.com/problems/valid-perfect-square/'
 ---
 
 # 0367 - Valid Perfect Square (Easy)
@@ -91,6 +91,52 @@ class Solution {
         // return false if no result found
         return false;
     }
+}
+```
+</TabItem>
+
+<TabItem value="py" label="Python">
+<SolutionAuthor name="@radojicic23"/>
+
+```py
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        left = 0
+        right = num
+        while left <= right:
+            mid = (left + right) // 2
+            if mid ** 2 == num:
+                return True
+            elif mid ** 2 < num:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False
+```
+</TabItem>
+
+<TabItem value="js" label="JavaScript">
+<SolutionAuthor name="@radojicic23"/>
+
+```js
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isPerfectSquare = function(num) {
+    let left = 0;
+    let right = num;
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if (mid ** 2 === num) {
+            return true;
+        } else if (mid ** 2 > num) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return false;
 }
 ```
 </TabItem>
