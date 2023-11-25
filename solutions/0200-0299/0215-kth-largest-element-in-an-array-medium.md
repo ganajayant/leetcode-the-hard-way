@@ -1,5 +1,5 @@
 ---
-description: 'Author: @wingkwong, @ColeB2 | https://leetcode.com/problems/kth-largest-element-in-an-array/'
+description: 'Author: @wingkwong, @ColeB2, @jit | https://leetcode.com/problems/kth-largest-element-in-an-array/'
 tags: [Priority Queue, Quick Select]
 ---
 
@@ -50,12 +50,17 @@ Space Complexity: $$O(k)$$. Where $$k$$ is the size of our heap, as we are only 
 ```cpp
 class Solution {
 public:
+    // k-th largest / smallest -> think of priority queue
     int findKthLargest(vector<int>& nums, int k) {
         priority_queue<int> pq;
-        // push elements to priority queue
-        for (auto &x : nums) pq.push(x);
-        // only keep k largest elements
+        // push the elements to priority queue
+        for (auto x : nums) pq.push(x);
+        // e.g. [3,2,1,5,6,4] -> 1,2,3,4,5,6 (top)
+        // then we remove top k - 1 elements
         for (int i = 0; i < k - 1; i++) pq.pop();
+        // e.g. [3,2,1,5,6,4] -> 1,2,3,4,5,6 (top)
+        // k = 2 -> we pop 2 - 1 = 1 element
+        // 1,2,3,4,5 (top)
         // return the top which is the k-th largest element
         return pq.top();
     }
@@ -116,8 +121,6 @@ public:
 };
 ```
 
-
-
 <SolutionAuthor name="@wingkwong"/>
 
 ```cpp
@@ -128,6 +131,31 @@ public:
         return nums[k - 1];
     }
 };
+```
+
+</TabItem>
+
+<TabItem value="python" label="Python">
+<SolutionAuthor name="@wingkwong"/>
+
+```py
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return heapq.nlargest(k, nums)[-1]
+```
+
+</TabItem>
+
+<TabItem value="rust" label="Rust">
+<SolutionAuthor name="@jit"/>
+
+```rs
+impl Solution {
+    pub fn find_kth_largest(mut nums: Vec<i32>, k: i32) -> i32 {
+        let n = nums.len();
+        *nums.select_nth_unstable(n - k as usize).1
+    }
+}
 ```
 
 </TabItem>
@@ -152,7 +180,7 @@ class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         # partitioning function. 2 parameters, l and r to represent
         # left and right pointers inside our nums array.
-        def partition(l,r):
+        def partition(l, r):
             # pivot, select random value between l,r.
             pivot = random.randint(l,r)
             # swap our pivot to the end of our partition.
@@ -179,15 +207,15 @@ class Solution:
         # run our algorithm until our partition index reaches k-1
         # k - 1 means k elements inside our partition. We use k - 1 as
         # we are 0th-indexed.
-        while p != k-1:
+        while p != k - 1:
             # Find our partition p
             p = partition(left,right)
             # too few elements inside our partition
-            if p < k-1:
+            if p < k - 1:
                 # move left pointer up
                 left = p + 1
             # too many
-            elif p > k-1:
+            elif p > k - 1:
                 # move right pointer down.
                 right = p - 1
         # p == k - 1, it means our partition is the kth largest. 

@@ -8,6 +8,9 @@ export default function Table({title, collectionLink, isSorted = true, data}) {
     'Medium': 1,
     'Hard': 2
   }
+  const renderDifficultyClassName = (difficulty) => {
+    return difficulty.toLowerCase()
+  }
   const renderRow = (isSorted ? data.sort((x, y) => sortOrder[x.difficulty] - sortOrder[y.difficulty]) : data).map((d, idx) => {
     return (
       <tr key={idx}>
@@ -16,7 +19,9 @@ export default function Table({title, collectionLink, isSorted = true, data}) {
             {d.problemName}
           </a>
         </td>
-        <td>{d.difficulty}</td>
+        <td className={renderDifficultyClassName(d.difficulty)}>
+          {d.difficulty}
+        </td>
         <td style={{textAlign: 'center'}}>
         {
             d.solutionLink && 
@@ -45,7 +50,7 @@ export default function Table({title, collectionLink, isSorted = true, data}) {
         {
           collectionLink && <h4>Start Practicing: <a href={collectionLink} target="_blank">{collectionLink}</a></h4>
         }
-        <table>
+        <table class="suggested-problem-table">
           <thead>
             <tr>
               <th>Problem Name</th>

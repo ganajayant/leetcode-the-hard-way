@@ -1,5 +1,6 @@
 ---
 description: "Author: @wingkwong, @radojicic23 | https://leetcode.com/problems/find-the-difference/"
+tags: [Hash Table, String, Bit Manipulation, Sorting]
 ---
 
 # 0389 - Find the Difference (Easy)
@@ -69,9 +70,24 @@ public:
 ```
 
 </TabItem>
+
+<TabItem value="kotlin" label="Kotlin">
+<SolutionAuthor name="@wingkwong"/>
+
+```kt
+class Solution {
+    fun findTheDifference(s: String, t: String): Char {
+        var ans = 0
+        for (x in s + t) ans = ans xor x.toInt()
+        return ans.toChar()
+    }
+}
+```
+
+</TabItem>
 </Tabs>
 
-## Approach 2: Hash Map
+## Approach 2: Counting
 
 We can store the occurrence for each character. As `t` has one more character, we can count `t` first, iterate `s` to subtract the occurrences. The answer will be the one which has one occurrence.
 
@@ -83,16 +99,16 @@ We can store the occurrence for each character. As `t` has one more character, w
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        unordered_map<char, int> m;
+        int occ[26] = {0};
         // count the occurrence for t
-        for (auto x : t) m[x]++;
-        // instead of using an extra hash map,
-        // we decrease the occurrence
-        for (auto x : s) m[x]--;
-        for (auto x : m) {
+        for (auto x : t) occ[x - 'a']++;
+        // instead of using an extra array,
+        // we decrease the occurrence in `occ`
+        for (auto x : s) occ[x - 'a']--;
+        for (int i = 0; i < 26; i++) {
             // the answer will be the one with occurrence = 1
-            if (x.second == 1) {
-                return x.first;
+            if (occ[i] == 1) {
+                return i + 'a';
             }
         }
         // returning any character would work as it never reaches here

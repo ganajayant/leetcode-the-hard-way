@@ -1,5 +1,6 @@
 ---
 description: 'Author: @wingkwong | https://leetcode.com/problems/find-unique-binary-string/'
+tags: [Array, String, Backtracking]
 ---
 
 # 1980 - Find Unique Binary String (Medium)
@@ -52,6 +53,10 @@ First we store the existing binary string into a hash map. Then we try to build 
 
 As $$n$$ is at most $$16$$, there would be at most $$2 ^ {16} = 65536$$ possibilities. To find all of them, we can do the following.
 
+<Tabs>
+<TabItem value="cpp" label="C++">
+<SolutionAuthor name="@wingkwong"/>
+
 ```cpp
 // try all 2 ^ n possibilities
 for (int i = 0; i < 1 << n; i ++) {
@@ -65,6 +70,13 @@ for (int i = 0; i < 1 << n; i ++) {
 }
 ```
 
+</TabItem>
+</Tabs>
+
+Here's the full solution.
+
+<Tabs>
+<TabItem value="cpp" label="C++">
 <SolutionAuthor name="@wingkwong"/>
 
 ```cpp
@@ -93,3 +105,5 @@ public:
 };
 ```
 
+</TabItem>
+</Tabs>

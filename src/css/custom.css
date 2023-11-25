@@ -73,6 +73,9 @@
     background: var(--ifm-color-emphasis-200);
     color: inherit;
   }
+  .nav-emoji {
+    display: none;
+  }
 }
 
 .header-github-link:hover {
@@ -99,8 +102,7 @@ div[class^='announcementBar_'] {
   border-bottom: 1px dotted #eeeeee;
   font-weight: bold;
   font-size: 18px;
-  height: 35px;
-  padding: 10px;
+  height: auto;
 }
 
 div[class^='announcementBar_'] a {
@@ -182,4 +184,53 @@ div[class^='announcementBar_'] .clean-btn {
 pre  {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+table {
+  width:100%;
+}
+
+table th:nth-child(1) {
+  text-align: left;
+}
+
+table.suggested-problem-table tbody > tr > td:nth-child(1) {
+  width: 30%;
+}
+
+table.suggested-problem-table tbody > tr > td:nth-child(2) {
+  width: 10%;
+  text-align: center;
+}
+
+table.suggested-problem-table tbody > tr > td:nth-child(3) {
+  width: 10%;
+  text-align: center;
+}
+
+table.suggested-problem-table tbody > tr > td:nth-child(4) {
+  width: 10%;
+  text-align: center;
+}
+
+table, tr, td, th {
+  border: none !important;
+}
+
+.easy {
+  color: rgb(0 175 155);
+}
+
+.medium {
+  color: rgb(255 184 0);
+}
+
+.hard {
+  color: rgb(255 45 85);
+}
+
+@media screen and (min-width: 1120px) {
+  .nav-emoji {
+    display: inline-block;
+  }
 }

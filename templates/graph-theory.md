@@ -208,9 +208,11 @@ struct TopologicalSort {
     vector<int> orders;
     vector<vector<int>> G;
     bool isTopologicalSorted = false;
+    int steps = 0;
+    int nodes = 0;
     
     TopologicalSort(vector<vector<int>>& g, vector<int>& in) {
-        G = g; vector<vector<int>>
+        G = g;
         n = (int) G.size();
         indegree = in;
         
@@ -222,16 +224,20 @@ struct TopologicalSort {
             }
         }
         while(!q.empty()) {
-            auto u = q.front(); q.pop();
-            orders.push_back(u);
-            for(auto v : G[u]) {
-                if(--indegree[v] == 0) {
-                    q.push(v);
+            int sz = q.size();
+            steps += 1;
+            nodes += q.size();
+            for (int i = 0; i < sz; i++) {
+                auto u = q.front(); q.pop();
+                orders.push_back(u);
+                for(auto v : G[u]) {
+                    if(--indegree[v] == 0) {
+                        q.push(v);
+                    }
                 }
             }
-            res++;
         }
-        isTopologicalSorted = res == n;
+        isTopologicalSorted = nodes == n;
     }
 };
 ```
@@ -331,6 +337,39 @@ class dsu {
     return false;
   }
 };
+```
+
+</TabItem>
+
+<TabItem value="kt" label="Kotlin">
+
+```kt
+private class DSU(private val n: Int) {
+    private val parent = IntArray(n) { it }
+    private val rank = IntArray(n)
+    
+    fun find(x: Int): Int {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x])
+        }
+        return parent[x]
+    }
+    
+    fun unite(x: Int, y: Int): Boolean {
+        val rootX = find(x)
+        val rootY = find(y)
+        if (rootX == rootY) return false
+        if (rank[rootX] < rank[rootY]) {
+            parent[rootX] = rootY
+        } else if (rank[rootX] > rank[rootY]) {
+            parent[rootY] = rootX
+        } else {
+            parent[rootX] = rootY
+            rank[rootY]++
+        }
+        return true
+    }
+}
 ```
 
 </TabItem>

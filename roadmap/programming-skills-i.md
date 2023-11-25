@@ -1,15 +1,14 @@
 ---
-title: 'Study Plan - Programming Skills - I'
+title: 'Programming Skills (Basic)'
 description: 'https://leetcode.com/study-plan/programming-skills'
 hide_table_of_contents: true
-sidebar_position: 5
+sidebar_position: 10
 keywords:
   - leetcode
   - study plan
+  - roadmap
   - Programming Skills - I
 ---
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLBu4Bche1aEXiiHTKYwGD2m_7MEU6ECfj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 export const problems = [
   {
@@ -46,13 +45,13 @@ export const problems = [
     "problemName": "1779. Find Nearest Point That Has the Same X or Y Coordinate",
     "difficulty": "Easy",
     "leetCodeLink": "https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate",
-    "solutionLink": ""
+    "solutionLink": "../../solutions/0900-0999/largest-perimeter-triangle-easy"
   },
   {
     "problemName": "1822. Sign of the Product of an Array",
     "difficulty": "Easy",
     "leetCodeLink": "https://leetcode.com/problems/sign-of-the-product-of-an-array",
-    "solutionLink": ""
+    "solutionLink": "../../solutions/1800-1899/sign-of-the-product-of-an-array-easy"
   },
   {
     "problemName": "1502. Can Make Arithmetic Progression From Sequence",
