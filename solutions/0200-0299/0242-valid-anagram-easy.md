@@ -1,6 +1,6 @@
 ---
-description: 'Author: @wingkwong, @vigneshshiv, @radojicic23 | https://leetcode.com/problems/valid-anagram/'
-tags: ['Hash Map']
+description: 'Author: @wingkwong, @vigneshshiv, @radojicic23, @jit | https://leetcode.com/problems/valid-anagram/'
+tags: [Hash Table, String, Sorting]
 ---
 
 # 0242 - Valid Anagram (Easy)
@@ -111,7 +111,7 @@ var isAnagram = function(s, t) {
 </TabItem>
 </Tabs>
 
-## Approach 2: Hash Map
+## Approach 2: Counting
 
 <Tabs>
 <TabItem value="cpp" label="C++">
@@ -122,7 +122,7 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         // if s and t are anagram, 
-        // then the frequency of each number would be same
+        // then the frequency of each character would be same
         int cnt[26] = {0};
         for (auto x : s) cnt[x - 'a']++;
         for (auto x : t) cnt[x - 'a']--;
@@ -157,6 +157,44 @@ class Solution {
             if (num != 0) return false;
         }
         return true;
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<SolutionAuthor name="@wingkwong"/>
+
+```go
+// if s and t are anagram, 
+// then the frequency of each character would be same
+func isAnagram(s string, t string) bool {
+    cnt := [26]int{}
+	for _, x := range s { cnt[x -'a']++ }
+    for _, x := range t { cnt[x -'a']-- }
+	for _, c := range cnt {
+		if c != 0 {
+			return false
+		}
+	}
+	return true
+}
+```
+
+</TabItem>
+
+<TabItem value="rs" label="Rust">
+<SolutionAuthor name="@jit"/>
+
+```rs
+impl Solution {
+    // Frequency counting:
+    pub fn is_anagram(s: String, t: String) -> bool {
+        let mut cnts = [0; u8::MAX as usize];
+        for a in s.bytes() { cnts[a as usize] += 1; }
+        for b in t.bytes() { cnts[b as usize] -= 1; }
+        cnts.iter().all(|&ct| ct == 0)
     }
 }
 ```
