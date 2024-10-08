@@ -117,7 +117,10 @@ This is a very famous sequence of natural numbers and has a variety of applicati
 [Here](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics) is a more exhastive list.
 
 The $n^{th}$ Catalan number can be found using the formula:
-$C_n$ $=$ $\frac{1}{n + 1}$$2n \choose n$
+
+$$
+C_n = \frac{1}{n + 1} {2n \choose n}
+$$
 
 ### Example #2: [1863 - Sum of All Subset XOR Totals](https://leetcode.com/problems/sum-of-all-subset-xor-totals/description/)
 
@@ -226,7 +229,7 @@ $b$ $=$ $\frac{k \, - \, endPos \, + \, startPos}{2}$
 
 Then the solution is $k \choose a$ $=$ $k \choose b$ as we need to find number of ways to choose $a$ or $b$ moves, out of $k$ moves.
 
-Thus, we need to find $nCr$$(k, \frac{k - endPos + startPos}{2})$.
+Thus, we need to find $nCr$ $(k, \frac{k - endPos + startPos}{2})$.
 
 To implement this, you can both precompute the entire Pascal's Triangle, or use concept of mudular inverses to find the required value.
 
